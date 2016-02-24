@@ -1,6 +1,3 @@
-include("consts.jl")
-include("Adiabatic.jl")
-
 function Hadamard(qubit::AbstractVector)
     return hadamard*qubit
 end
