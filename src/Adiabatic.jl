@@ -56,20 +56,21 @@ function cooler!(state::AbstractVector,Hs::AdiaSystem,gamma::Real,t::Real)
     energy = eig(full(Hamiltonian(Hs)))[1]
     @assert -pi/2<minimum(energy)*t-gamma<pi/2 "bad cooling parameters"
     @assert -pi/2<maximum(energy)*t-gamma<pi/2 "bad cooling parameters"
-    copy!(state,normalize!(0.5*(state-im*exp(im*gamma)*
+
+    copy!(state,normalize!((state-im*exp(im*gamma)*
             trotter(-im*t*(1-Hs.location)*Hs.HB,
-                -im*t*Hs.location*Hs.HP,3)*state)))
+                -im*t*Hs.location*Hs.HP,3)*state)/2))
 end
 
 function heater!(state::AbstractVector,Hs::AdiaSystem,gamma::Real,t::Real)
     # boundscheck(Hs,gamma,t)
     energy = eig(full(Hamiltonian(Hs)))[1]
-    @show minimum(energy)*t-gamma
     @assert -pi/2<minimum(energy)*t-gamma<pi/2 "bad cooling parameters"
     @assert -pi/2<maximum(energy)*t-gamma<pi/2 "bad cooling parameters"
-    copy!(state,normalize!(0.5*(state+im*exp(im*gamma)*
+
+    copy!(state,normalize!((state+im*exp(im*gamma)*
                 trotter(-im*t*(1-Hs.location)*Hs.HB,
-                    -im*t*Hs.location*Hs.HP,3)*state)))
+                    -im*t*Hs.location*Hs.HP,3)*state)/2))
 end
 
 
@@ -148,9 +149,7 @@ end
 
 function evolution(
     Hs::AdiaSystem,
-    bitnum::Real,
-    gamma::Real,
-    t::Real;
+    bitnum::Real;
     dt = 1e-2
     )
     #init variables
@@ -175,6 +174,8 @@ function evolution(
     print("enter cooling module 1\n")
     CoolingModule!(state,Hs,gamma,t;n=5)
 
+    print("finish cooling\n")
+
     for i=evotime/3:dt:2*evotime/3
         realtimeop!(state,Hs,dt)
 
@@ -186,6 +187,8 @@ function evolution(
     gamma,t = CoolingPara(Hs)
     print("enter cooling module 2\n")
     CoolingModule!(state,Hs,gamma,t;n=5)
+
+    print("finish cooling\n")
 
     for i=2*evotime/3:dt:evotime
         realtimeop!(state,Hs,dt)
@@ -208,7 +211,7 @@ H = AdiaSystem([TruthTable(0b1001,[1,2])],2,1e3)
 
 bitnum = 2
 
-evolution(H,bitnum,0,pi/2)
+evolution(H,bitnum)
 
 # state = [1/sqrt(2^bitnum) for i=1:2^bitnum]
 
