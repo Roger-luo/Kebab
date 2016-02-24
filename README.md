@@ -7,7 +7,7 @@ Kebab is a quantum computation framework for Julia.The structure is to realize q
 
 - **Adiabatic Computation** Adiabatic Computation Module is realized by add adiabatic evolution gates
 
-# **Cooling** the cooling method comes from the [doi:10.103](http://www.nature.com/nphoton/journal/v8/n2/full/nphoton.2013.354.html)
+- **Cooling** the cooling method comes from the [doi:10.103](http://www.nature.com/nphoton/journal/v8/n2/full/nphoton.2013.354.html)
 
 # User Guide
 To use this package, use `Pkg.clone(https://github.com/Roger-luo/AdiaRoll.jl.git)`
