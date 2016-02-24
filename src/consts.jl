@@ -1,0 +1,5 @@
+const σ₀=I
+const σ₁=[0 1;1 0]
+const σ₂=[0 -im;im 0]
+const σ₃=[1 0;0 -1]
+const hadamard = [1/sqrt(2) 1/sqrt(2);1/sqrt(2) -1/sqrt(2)]
