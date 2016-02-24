@@ -14,7 +14,7 @@ To use this package, use `Pkg.clone(https://github.com/Roger-luo/AdiaRoll.jl.git
 
 or download the source codes from github.
 
-# One example for cooling based computation
+# One example for cooling-assist computation
 
 ```julia
 using Kebab
