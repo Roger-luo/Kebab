@@ -10,12 +10,21 @@ include("Adia/Adiabatic.jl")
 include("gates.jl")
 
 
-export CoolingAssit,AdiaSystem,TruthTable
-
+export 
+    AdiaSystem,#Adiabatic System Object
+    TruthTable,#TruthTable Object
+    TimeEvoModule!,#Time evolution gate
+    Hadamard,
+    gamma,
+    #operators
+    realtimeop,#real time operator
+    realtimeop!,
+    #cooling
+    cooling!,#single cooling module
+    CoolingModule!,#multi-times cooling module
+    CoolingPara,#choose cooling parameter
+    #math functions
+    trotter,
+    normalize!,
+    ⊗,⊕
 end
-
-using Kebab
-
-H = AdiaSystem([TruthTable(0b1001,[1,2])],2,1e3)
-bitnum = 2
-CoolingAssit(H,bitnum)
