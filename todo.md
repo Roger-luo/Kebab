@@ -1,0 +1,7 @@
+- more quantum gates from experiment
+- performance optimization
+- topological quantum computation
+- quantum error correction
+- quantum Fourier Transformation
+- Shor algorithm
+- circuit optimization

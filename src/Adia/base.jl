@@ -13,3 +13,13 @@ type AdiaSystem
         new(HB,HP,location,maxtime,bitnum)
     end
 end
+
+type Qubit
+    state::AbstractVector
+    bitID::Int64
+
+    function Qubit(state::AbstractVector,bitID::Int64)
+        @assert length(state) == 2 "state of qubit should be a 2 variable array"
+        new(state,bitID)
+    end
+end
