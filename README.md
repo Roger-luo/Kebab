@@ -1,6 +1,6 @@
 # Kebab
 
-Kebab is a quantum computation framework for Julia.The structure is to realize quantum algorithm simulation under quantum circuit model. And add different gates to conbine different computation method.
+Kebab is a quantum computation framework for Julia.Kebab aims to realize quantum algorithm simulation in different level(eg.hardware level/software level/...) under different computation model and provide useful support for experiments. 
 
 # current functions
 - **Quantum Circuit** quantum circuit is basic structure to use this framework.[have not been finished]
