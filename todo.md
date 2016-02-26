@@ -5,3 +5,5 @@
 - [ ] quantum Fourier Transformation
 - [ ] Shor algorithm
 - [ ] circuit optimization
+- [ ] CNot,Toffli,pi/8
+- [ ] one-way clifford + 纯化

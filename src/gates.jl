@@ -10,21 +10,21 @@ function SingleQubitGate(
     end
 
     state_len = length(state)
-    res = zeros(state_len)
+    res = zeros(Complex,state_len)
     id = Int(log2(state_len))-ID+1
 
     for i=1:state_len
-        single_state_temp = zeros(state_len)
+        single_state_temp = zeros(Complex,state_len)
         if isone(i-1,id)
             # |1>
             single = gate*[0,1]
-            single_state_temp[i] = single[2]
-            single_state_temp[flip(i-1,id)+1] = single[1]
+            single_state_temp[i] = state[i]*single[2]
+            single_state_temp[flip(i-1,id)+1] = state[i]*single[1]
         else
             # |0>
             single = gate*[1,0]
-            single_state_temp[i] = single[1]
-            single_state_temp[flip(i-1,id)+1] = single[2]
+            single_state_temp[i] = state[i]*single[1]
+            single_state_temp[flip(i-1,id)+1] = state[i]*single[2]
         end
         res+=single_state_temp
     end
@@ -44,20 +44,20 @@ function ControlGate(
     bitnum = Int(log2(bitnum2))
     cid = bitnum - CID +1
     ucid = bitnum - UCID +1
-    res = zeros(bitnum2)
+    res = zeros(Complex,bitnum2)
     for i = 1:length(state)
         if isone(i-1,cid)&&(!isone(i-1,ucid))
-            temp = zeros(bitnum2)
+            temp = zeros(Complex,bitnum2)
             single = gate*[1,0]
             temp[i] = state[i]*single[1]
             temp[flip(i-1,ucid)+1] = state[i]*single[2]
         elseif isone(i-1,cid)&&isone(i-1,ucid)
-            temp = zeros(bitnum2)
+            temp = zeros(Complex,bitnum2)
             single = gate*[0,1]
             temp[i] = state[i]*single[2]
             temp[flip(i-1,ucid)+1] = state[i]*single[1]
         else
-            temp = zeros(bitnum2)
+            temp = zeros(Complex,bitnum2)
             temp[i] = state[i]
         end
         res+=temp

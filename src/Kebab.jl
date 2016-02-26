@@ -10,6 +10,7 @@ include("mathfunc.jl")
 
 include("Adia/Adiabatic.jl")
 include("gates.jl")
+include("algorithm/QFT.jl")
 
 
 export 
@@ -20,9 +21,12 @@ export
     TruthTable,#TruthTable Object
     TimeEvoModule!,#Time evolution gate
     #circuit
-    Hadamard,
-    gamma,
+    Hadamard,R_k,C_R_k,
+    Pauli_X,Pauli_Y,Pauli_Z,
     ControlGate,
+    SingleQubitGate,
+    #algorithm
+    QFT!,QFT,
     #operators
     realtimeop,#real time operator
     realtimeop!,

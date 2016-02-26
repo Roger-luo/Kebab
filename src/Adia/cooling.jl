@@ -46,12 +46,13 @@ function CoolingModule!(
     n=5)
 
     count = 0
+    prob = 1
 
     while count<n
         flag = cooling!(state,Hs,gamma,t)
         if flag
-            count += 1
-        end
+            
+        count += 1
     end
 end
 
