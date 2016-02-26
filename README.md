@@ -4,12 +4,13 @@ Kebab is a quantum computation framework for Julia.The structure is to realize q
 
 # current functions
 - **Quantum Circuit** quantum circuit is basic structure to use this framework.[have not been finished]
+- **Quantum Fourier Transformation** QFT is based on quantum circuit
 
 - **Adiabatic Computation** Adiabatic Computation Module is realized by add adiabatic evolution gates
 
 - **Cooling** the cooling method comes from the [doi:10.103](http://www.nature.com/nphoton/journal/v8/n2/full/nphoton.2013.354.html)
 
-# User Guide
+# Simple User Guide
 To use this package, use `Pkg.clone(https://github.com/Roger-luo/Kebab.git)`
 
 or download the source codes from github.
@@ -24,16 +25,16 @@ use `TruthTable` to construct the cost function,for example a cost function defi
 
 then the truth table of this cost function is
 
-bits value | truth value
--------------- | ---------------
- 0   0    0 | 0
- 0      0      1 | 1
- 0   1      0  | 1
- 0   1   1    | 0
- 1   0   0    | 1
- 1   0   1    | 0
- 1   1   0    | 0
- 1   1   1    | 0
+| bits value | truth value |
+|------------|-------------|
+| 0   0   0  |           0 |
+| 0   0   1  |           1 |
+| 0   1   0  |           1 |
+| 0   1   1  |           0 |
+| 1   0   0  |           1 |
+| 1   0   1  |           0 |
+| 1   1   0  |           0 |
+| 1   1   1  |           0 |
 
 so the truth table construct as following,the `truthvalue` contains the truth value as a number
 and the `bitID` contains the ID of bits in this truth table
