@@ -27,7 +27,7 @@ function cooling!(
     t::Real
     )
     dice = rand()
-    if dice <= 0.5*(1-sin(gamma))
+    if dice <= 0.5*(1+sin(gamma))
         #get |1> (higher energy)
         heater!(state,Hs,gamma,t)
         return false
@@ -51,9 +51,13 @@ function CoolingModule!(
     while count<n
         flag = cooling!(state,Hs,gamma,t)
         if flag
-            
+            prob *= 0.5*(1+sin(gamma))
+        else
+            prob *= 0.5*(1-sin(gamma))
+        end
         count += 1
     end
+    return prob
 end
 
 function CoolingPara(Hs::AdiaSystem)

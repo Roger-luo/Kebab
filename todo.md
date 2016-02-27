@@ -2,7 +2,7 @@
 - [ ] performance optimization
 - [ ] topological quantum computation
 - [ ] quantum error correction
-- [ ] quantum Fourier Transformation
+- [x] quantum Fourier Transformation
 - [ ] Shor algorithm
 - [ ] circuit optimization
 - [ ] CNot,Toffli,pi/8

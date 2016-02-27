@@ -1,6 +1,6 @@
 module Kebab
 
-# __precompile__()
+__precompile__()
 
 import Base:bin
 
