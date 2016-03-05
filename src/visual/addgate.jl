@@ -1,8 +1,6 @@
-include("base.jl")
-
 function check(gate::Gate,id...)
     if typeof(gate.op) <: AbstractMatrix
-        @assert size(gate.op)==(length(id),length(id)) "Error: Operational Matrix is not in Correct Size"
+        @assert size(gate.op)==(2^length(id),2^length(id)) "Error: Operational Matrix is not in Correct Size"
     elseif typeof(gate.op) <: Function
         try
             gate.op(InitState(length(id)))
@@ -24,7 +22,7 @@ end
 
 function addgate!(
     circuit::Circuit,
-    control::AbstractVector{Integer}
+    control::AbstractVector,
     gate::Gate,
     id::Integer...
     )

@@ -1,4 +1,6 @@
 include("base.jl")
+include("addgate.jl")
+
 
 typealias ID Integer
 
@@ -66,24 +68,51 @@ function measure(state::AbstractVector,gate::Gate,id::ID...)
     return res
 end
 
-# function measure(
-#     state::AbstractVector,
-#     control::AbstractVector{ID},
-#     gate::Gate,
-#     id::ID...)
-#     # consts
-#     state_len = length(state)
-#     numbits = Int(log2(state_len))
+function measure(
+    state::AbstractVector,
+    control::AbstractVector,
+    gate::Gate,
+    id::ID...)
+    # consts
+    state_len = length(state)
+    numbits = Int(log2(state_len))
 
-#     flag = true
+    res = zeros(Complex,state_len)
+    for i = 0:state_len-1
+        #AND
+        flag = true
+        for j in control
+            flag = flag&&isone(i,j)
+        end
 
-#     for i = 0:state_len-1
-#         for j in control
+        if flag
+            ground = lowerbit(i,id...)
+            local_state_catch = state[i+1]*([x==bitvalue(i,id...)?1:0 for x=0:2^gate.bitnum-1]|>gate)
 
+            state_catch = zeros(Complex,state_len)
+            for j = 1:length(local_state_catch)
+                state_catch[ground+expandbit(j-1,id...)+1] = local_state_catch[j]
+            end
 
+            res += state_catch
+        else
+            res += [x==(i+1)?Complex(state[i+1]):0+0im for x=1:state_len]
+        end
+    end
+    return res
+end
 
+function measure(cc::Circuit,state::AbstractVector)
+    for g in cc.gates
+        state = measure(state,g...)
+    end
+    return state
+end
 
-@show InitState(2)
-@show measure([0.5,0.5,0.5,0.5],Hadamard,1)
+test = Circuit()
+addgate!(test,Hadamard,1)
+state = InitState(2)
+@show measure(test,state)
 
-# function measure(cc::Circuit)
+# @show InitState(2)
+# @show norm(measure([0,1/sqrt(2),1/sqrt(2),0],[2],Hadamard,1))

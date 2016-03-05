@@ -82,12 +82,6 @@ Circuit()=Circuit(Array(Tuple,0),0)
 Circuit(bit_num::Integer)=Circuit(Tuple,bit_num)
 
 include("../consts.jl")
-# Hadamard = Gate(hadamard,1)
-
-function test(state::AbstractVector)
-    return hadamard*state
-end
-
-Hadamard = Gate(test,1)
+Hadamard = Gate(hadamard,1)
 
 # @show InitState(1)|>Hadamard
