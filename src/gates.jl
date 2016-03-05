@@ -1,3 +1,5 @@
+include("mathfunc.jl")
+
 function SingleQubitGate(
     gate::AbstractMatrix,
     state::AbstractVector,
@@ -30,6 +32,8 @@ function SingleQubitGate(
     end
     return res
 end
+
+@show SingleQubitGate([1/sqrt(2) 1/sqrt(2);1/sqrt(2) -1/sqrt(2)],[0.5,0.5,0.5,0.5],2)
 
 function ControlGate(
     gate::AbstractMatrix,

@@ -7,7 +7,7 @@ abstract AbstractCircuit
 typealias QuBit Array{Int,1}
 
 function InitState(n::Integer=2)
-    return [1/sqrt(n) for i=1:2^n]
+    return [1/sqrt(2^n) for i=1:2^n]
 end
 
 function isunitary(umatrix::AbstractMatrix)
@@ -90,4 +90,4 @@ end
 
 Hadamard = Gate(test,1)
 
-@show InitState(1)|>Hadamard
+# @show InitState(1)|>Hadamard
