@@ -12,10 +12,12 @@ end
 
 function bitvalue(bit::Integer,id::ID...)
     res = 0
+    n = 0
     for i in id
         if isone(bit,i)
-            res+=1<<(i-1)
+            res+=1<<n
         end
+        n+=1
     end
     return res
 end
@@ -106,13 +108,21 @@ function measure(cc::Circuit,state::AbstractVector)
     for g in cc.gates
         state = measure(state,g...)
     end
-    return state
+    return normalize(state)
 end
 
-test = Circuit()
-addgate!(test,Hadamard,1)
-state = InitState(2)
-@show measure(test,state)
 
+
+
+# test = Circuit()
+# addgate!(test,Hadamard,1)
+# addgate!(test,Hadamard,2)
+# state = InitState(2)
+# @show state
+# @show measure(test,state)
+
+# state = measure(state,Hadamard,1)
+# @show state
+# @show normalize(measure(state,Hadamard,2))
 # @show InitState(2)
 # @show norm(measure([0,1/sqrt(2),1/sqrt(2),0],[2],Hadamard,1))

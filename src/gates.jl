@@ -67,8 +67,11 @@ function ControlGate(
     return res
 end
 
-@show ControlGate([1/sqrt(2) 1/sqrt(2);1/sqrt(2) -1/sqrt(2)],[0,1/sqrt(2),1/sqrt(2),0],1,2)
 
+state = SingleQubitGate([1/sqrt(2) 1/sqrt(2);1/sqrt(2) -1/sqrt(2)],[0.5,0.5,0.5,0.5],2)
+@show state
+state = SingleQubitGate([1/sqrt(2) 1/sqrt(2);1/sqrt(2) -1/sqrt(2)],state,1)
+@show state
 ## May not need Function type
 # function ControlGate(
 #     gate::Function,
