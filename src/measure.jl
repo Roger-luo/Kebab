@@ -1,7 +1,3 @@
-include("base.jl")
-include("addgate.jl")
-
-
 typealias ID Integer
 
 # check if the bit at pos is 1 or not
@@ -10,6 +6,8 @@ function isone(bit::Integer,pos::Integer)
     return Bool((bit>>(pos-1))&1)
 end
 
+# return the value of given bits with ids in the given bit squence
+# eg. |10101> id:(1,3) returns 0b11 = 3
 function bitvalue(bit::Integer,id::ID...)
     res = 0
     n = 0
@@ -88,6 +86,7 @@ function measure(
         end
 
         if flag
+        # control bits are all true
             ground = lowerbit(i,id...)
             local_state_catch = state[i+1]*([x==bitvalue(i,id...)?1:0 for x=0:2^gate.bitnum-1]|>gate)
 
@@ -98,6 +97,7 @@ function measure(
 
             res += state_catch
         else
+        # at least one of the control bits is false
             res += [x==(i+1)?Complex(state[i+1]):0+0im for x=1:state_len]
         end
     end
@@ -110,8 +110,6 @@ function measure(cc::Circuit,state::AbstractVector)
     end
     return normalize(state)
 end
-
-
 
 
 # test = Circuit()
