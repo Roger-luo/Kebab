@@ -20,3 +20,5 @@ function TimeEvoModule!(
     end
     return eigens
 end
+
+export TimeEvoModule!

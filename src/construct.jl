@@ -32,3 +32,5 @@ function addgate!(
 end
 
 addgate!(cc::Circuit,ctrl::Integer,gate::AbstractGate,id::Integer...)=addgate!(cc,[ctrl],gate,id...)
+
+export addgate!

@@ -111,13 +111,7 @@ function measure(cc::Circuit,state::AbstractVector)
     return normalize(state)
 end
 
-
-# test = Circuit()
-# addgate!(test,Hadamard,1)
-# addgate!(test,Hadamard,2)
-# state = InitState(2)
-# @show state
-# @show measure(test,state)
+export measure
 
 # state = measure(state,Hadamard,1)
 # @show state

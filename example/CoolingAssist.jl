@@ -35,15 +35,17 @@ function CoolingAssit(
     return eigens,state,success_prob[1]
 end
 
-H = AdiaSystem([TruthTable(0b10010111,[1,2,3]),
-    TruthTable(0b10010111,[2,3,4]),
-    TruthTable(0b10010111,[3,4,5]),
-    TruthTable(0b10010111,[5,6,7]),
-    TruthTable(0b10010111,[1,5,6]),
-    TruthTable(0b10010111,[2,3,6]), 
-    ],7,1e3)
+# H = AdiaSystem([TruthTable(0b10010111,[1,2,3]),
+#     TruthTable(0b10010111,[2,3,4]),
+#     TruthTable(0b10010111,[3,4,5]),
+#     TruthTable(0b10010111,[5,6,7]),
+#     TruthTable(0b10010111,[1,5,6]),
+#     TruthTable(0b10010111,[2,3,6]), 
+#     ],7,1e3)
 
-eigen,state,p = CoolingAssit(H,7)
+H = AdiaSystem([TruthTable(0b10010111,[1,2,3])],3,1e3)
+
+eigen,state,p = CoolingAssit(H,3)
 
 print("pass\n")
 

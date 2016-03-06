@@ -71,3 +71,5 @@ end
 # ---
 # """
 # function ECGenerator()
+
+export TruthTable

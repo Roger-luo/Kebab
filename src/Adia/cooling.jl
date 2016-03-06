@@ -74,3 +74,5 @@ function CoolingPara(Hs::AdiaSystem)
     end
     return gamma,t
 end
+
+export CoolingPara,CoolingModule,CoolingModule!

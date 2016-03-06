@@ -1,3 +1,16 @@
+function SingleQFTCircuit!(cc:Circuit,bitID::Integer)
+    addgate!(cc,Hadamard,bitID)
+    for i=1:bitID-1
+        addgate!(cc,bitID-i,Gate("R_$(i)",R_k(i),1),bitID)
+    end
+end
+
+function QFT!(cc:Circuit,bit_num::Integer)
+    for i=1:bit_num
+        SingleQFTCircuit!(cc,i)
+    end
+end
+
 function SingleQubitQFT!(state::AbstractVector,bitID::Integer)
     state_len = length(state)
     bit_num = Int(log2(state_len))

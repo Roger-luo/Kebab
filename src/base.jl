@@ -52,15 +52,16 @@ end
 
 
 immutable Gate{T}<:AbstractGate
+    name::AbstractString
     op::T
     bitnum::Integer
 
-    Gate(op::T,n::Integer)=new(op,n)
+    Gate(name::AbstractString,op::T,n::Integer)=new(name,op,n)
 end
 
-Gate(op::AbstractMatrix,n::Integer)=Gate{AbstractMatrix}(op,n)
-Gate(op::UnitaryMatrix,n::Integer)=Gate{UnitaryMatrix}(op,n)
-Gate(op::Function,n::Integer)=Gate{Function}(op,n)
+Gate(name::AbstractString,op::AbstractMatrix,n::Integer)=Gate{AbstractMatrix}(name,op,n)
+Gate(name::AbstractString,op::UnitaryMatrix,n::Integer)=Gate{UnitaryMatrix}(name,op,n)
+Gate(name::AbstractString,op::Function,n::Integer)=Gate{Function}(name,op,n)
 
 import Base.|>
 
@@ -101,3 +102,5 @@ end
 
 Circuit()=Circuit(Array(Tuple,0),0)
 Circuit(bit_num::Integer)=Circuit(Tuple,bit_num)
+
+export InitState,Circuit,Gate,|>,→,⊕,⊗,trotter

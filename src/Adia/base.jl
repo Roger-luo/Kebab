@@ -13,3 +13,5 @@ type AdiaSystem
         new(HB,HP,location,maxtime,bitnum)
     end
 end
+
+export AdiaSystem
