@@ -1,6 +1,8 @@
 # Kebab
 
-Kebab is a quantum computation framework for Julia.Kebab aims to realize quantum algorithm simulation in different level(eg.hardware level/software level/...) under different computation model and provide useful support for experiments. 
+Kebab is a quantum computation framework for Julia.Kebab aims to realize quantum algorithm simulation in different level(eg.hardware level/software level/...) under different computation model and provide useful support for experiments.
+
+This will allow users to play with a simulated quantum computer with only basic hardware APIs.
 
 # current functions
 - **Quantum Circuit** quantum circuit is basic structure to use this framework.
@@ -14,6 +16,55 @@ Kebab is a quantum computation framework for Julia.Kebab aims to realize quantum
 To use this package, use `Pkg.clone(https://github.com/Roger-luo/Kebab.git)`
 
 or download the source codes from github.
+
+## Construct a circuit
+a circuit is constructed by `Circuit`:
+
+you can construct an empty circuit:
+```julia
+circuit = Circuit()
+```
+
+to add gates, use the method `addgate!`
+
+the `addgate!` method allows following way to add a quantum gate or a module to a specific place in the circuit.
+
+```julia
+# for single qubit gates(like Hadamard)
+# circuit : the circuit object
+# gate : gate object you want to insert
+# id   : the id of the qubit you want to add this gate to
+addgate!(circuit,gate,id)
+
+# for example
+# |a> ----[H]----
+# |b> -----------
+# |c> -----------
+# let's add a Hadamard gate to the first qubit in this three-qubit circuit
+
+# first creat your circuit
+c = Circuit()
+addgate!(c,Hadamard,1)
+```
+
+to measure a circuit, simply use the `measure` method on the circuit you want to measure with the the circuit's input state
+
+```julia
+# measure the circuit:
+# |a> ----[H]----
+# |b> -----------
+# |c> -----------
+# with input state:
+# 1/2*sqrt(2)(|000>+|001>+|010>+...+|111>)
+
+input_state = InitState(3)
+circuit = Circcuit()
+addgate!(circuit,Hadamard,1)
+res_state = measure(circuit,input_state)
+```
+
+
+# For Adiabatic Models
 
 ```
 TruthTable(truthvalue,bitID)
