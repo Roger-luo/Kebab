@@ -64,7 +64,7 @@ res_state = measure(circuit,input_state)
 ```
 
 
-# For Adiabatic Models
+## For Adiabatic Models
 
 ```
 TruthTable(truthvalue,bitID)
